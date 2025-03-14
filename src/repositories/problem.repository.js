@@ -1,3 +1,5 @@
+const { error } = require('winston');
+const logger = require('../config/logger.config');
 const {Problem} = require('../models');
 
 class problemRepository{
@@ -29,6 +31,18 @@ class problemRepository{
             const getProblem=await Problem.findById(id);
             console.log(getProblem);
             return getProblem;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async deleteProblem(id){
+        try {
+            const deleteProblem=await Problem.findByIdAndDelete(id);
+            if(!deleteProblem){
+                logger.warn(`Problem with id :${id} not found in DB`);
+                throw error;
+            }
+            return deleteProblem;
         } catch (error) {
             console.log(error);
         }
