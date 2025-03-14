@@ -22,7 +22,7 @@ app.get('/ping',(req,res)=>{
 
 app.listen(PORT,async()=>{
    
-    console.log(`Server Started at PORT:${PORT}`);
+    console.log(`Server Started at Port:${PORT}`);
     await connectDB();
     console.log("DB connected successfully")
 
